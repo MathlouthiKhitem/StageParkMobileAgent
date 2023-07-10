@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
   class ProfileInterface extends StatefulWidget {
   const ProfileInterface({super.key});
 
@@ -11,11 +14,36 @@ import 'package:flutter/material.dart';
 
   class _ProfileInterfaceState extends State<ProfileInterface> {
   bool isDarkMode = false;
+  final String _baseUrl = "10.0.2.2:8080";
 
   void toggleDarkMode(bool value) {
   setState(() {
   isDarkMode = value;
   });
+   }
+   @override
+ initState()  {
+     fetchUserProfile();
+
+    super.initState();
+  }
+  Future<void> fetchUserProfile() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String? idUser= prefs.getString("userId");
+    http.get(Uri.http(_baseUrl, "/Backend/users/$idUser/profileusers"))
+        .then((http.Response response) async {
+      if (response.statusCode == 200) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ProfileInterface()),
+        );
+      } else {
+        // Handle non-200 status code
+      }
+    }).catchError((error) {
+      // Handle any errors or exceptions
+    });
   }
 
   @override

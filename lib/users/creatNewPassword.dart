@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:parkmobile/users/signin.dart';
 
 
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 class CreatNewPassword extends StatefulWidget {
   const CreatNewPassword({Key? key}) : super(key: key);
 
@@ -12,10 +14,11 @@ class CreatNewPassword extends StatefulWidget {
 
 class _CreatNewPasswordState extends State<CreatNewPassword> {
 
-  late String? _email;
+  late String? _passwordnew;
   late String? _password;
   bool rememberMe = false;
 
+  final String _baseUrl = "10.0.2.2:8080";
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -43,7 +46,8 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
             Container(
               padding: EdgeInsets.all(16.0),
               child: TextFormField(
-                obscureText: true,
+
+
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Color(0xFFF8F7FD),
@@ -68,7 +72,7 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
                   ),
                 ),
                 onSaved: (String? value) {
-                  _email = value;
+                  _password = value;
                 },
 
               ),
@@ -102,7 +106,7 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
                   ),
                 ),
                 onSaved: (String? value) {
-                  _password = value;
+                  _passwordnew = value;
                 },
 
               ),
@@ -157,10 +161,58 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
                       // Set the text color
                     ),
                     child: const Text("Next"),
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
+                        Map<String, String> headers = {
+                          'Content-Type': 'application/json',
+                        };
+                        SharedPreferences prefs = await SharedPreferences.getInstance();
+                     String? emailin=   prefs.getString("emailpassword");
+                        http.get(Uri.http(_baseUrl, "/Backend/users/$emailin"), headers: headers)
+                            .then((http.Response response) async {
+                          if (response.statusCode == 200) {
+                            List<String> userIds = List<String>.from(json.decode(response.body));
 
+                            if (userIds.isNotEmpty) {
+                              String userIdpassw = userIds[0];
+
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                              prefs.setString("userIdPassword", userIdpassw);
+
+                              print("User ID: $userIdpassw");
+                            } else {
+                              // Handle case when the userIds list is empty
+                            }
+                          } else {
+                            // Handle non-200 status code
+                          }
+                        }).catchError((error) {
+                          // Handle any errors or exceptions
+                        });
+                        Map<String, dynamic> userDatapas = {
+
+                          "password" : _password
+                        };
+                        Map<String, String> headerss = {
+                          "Content-Type": "application/json; charset=UTF-8"
+                        };
+
+
+                        String? idUsers= prefs.getString("userIdPassword");
+                        http.put(Uri.http(_baseUrl, "/Backend/users/$idUsers/password"), headers: headerss,body: json.encode(userDatapas))
+                            .then((http.Response response) async {
+                          if (response.statusCode == 200) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Signin()),
+                            );
+                          } else {
+                            // Handle non-200 status code
+                          }
+                        }).catchError((error) {
+                          // Handle any errors or exceptions
+                        });
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -187,11 +239,11 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
                                       style: ElevatedButton.styleFrom(
                                         primary: Color(0xFFCEC9F2),
                                       ),
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(builder: (context) => Signin()),
-                                        );                                      },
+
+                                      onPressed: () async {
+
+
+                                        },
                                       child: const Text(
                                         "Go to Homepage",
                                       ),

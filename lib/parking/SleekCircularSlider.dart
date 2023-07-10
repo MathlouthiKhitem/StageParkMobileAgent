@@ -1,162 +1,8 @@
-// import 'dart:async';
-//
-// import 'package:flutter/material.dart';
-// import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-//
-// import 'dart:async';
-//
-// import 'package:flutter/material.dart';
-// import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-//
-// class CircularSliderWidget extends StatefulWidget {
-//   final TimeOfDay selectedTime;
-//   final Function(TimeOfDay) onTimeChanged;
-//
-//   CircularSliderWidget({
-//     required this.selectedTime,
-//     required this.onTimeChanged,
-//   });
-//
-//   @override
-//   _CircularSliderWidgetState createState() => _CircularSliderWidgetState();
-// }
-//
-// class _CircularSliderWidgetState extends State<CircularSliderWidget> {
-//   double _sliderValue = 0.0;
-//   late Timer _timer;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _initializeSliderValue();
-//     _startTimer();
-//   }
-//
-//   void _initializeSliderValue() {
-//     // Calculate the total number of seconds in the selected time
-//     int totalSeconds = widget.selectedTime.hour * 3600 +
-//         widget.selectedTime.minute * 60;
-//
-//     // Set the initial slider value based on the total seconds
-//     setState(() {
-//       _sliderValue = totalSeconds.toDouble();
-//     });
-//   }
-//
-//   void _startTimer() {
-//     _timer = Timer.periodic(Duration(minutes: 1), (_) {
-//       // Convert the slider value back to hours and minutes
-//       int totalSeconds = _sliderValue.toInt();
-//       if (totalSeconds <= 0) {
-//         _timer.cancel();
-//       } else {
-//         totalSeconds -= 60;
-//         int hours = totalSeconds ~/ 3600;
-//         totalSeconds %= 3600;
-//         int minutes = totalSeconds ~/ 60;
-//
-//         // Call the onTimeChanged callback with the updated time
-//         widget.onTimeChanged(TimeOfDay(hour: hours, minute: minutes));
-//
-//         setState(() {
-//           _sliderValue = totalSeconds.toDouble();
-//         });
-//       }
-//     });
-//   }
-//
-//   @override
-//   void dispose() {
-//     _timer.cancel();
-//     super.dispose();
-//   }
-//
-//   void _onSliderChanged(double value) {
-//     setState(() {
-//       _sliderValue = value;
-//     });
-//
-//     // Convert the slider value back to hours and minutes
-//     int totalSeconds = _sliderValue.toInt();
-//     int hours = totalSeconds ~/ 3600;
-//     totalSeconds %= 3600;
-//     int minutes = totalSeconds ~/ 60;
-//
-//     // Call the onTimeChanged callback with the updated time
-//     widget.onTimeChanged(TimeOfDay(hour: hours, minute: minutes));
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         Text(
-//           'Time',
-//           style: TextStyle(fontSize: 18),
-//         ),
-//         Text(
-//           widget.selectedTime.format(context),
-//           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-//         ),
-//         SleekCircularSlider(
-//           appearance: CircularSliderAppearance(
-//             customColors: CustomSliderColors(
-//               progressBarColors: [Colors.blue, Colors.lightBlueAccent],
-//               trackColor: Colors.grey,
-//             ),
-//             infoProperties: InfoProperties(
-//               modifier: (double value) {
-//                 // Convert the slider value to hours, minutes, and seconds
-//                 int totalSeconds = value.toInt();
-//                 int hours = totalSeconds ~/ 3600;
-//                 totalSeconds %= 3600;
-//                 int minutes = totalSeconds ~/ 60;
-//                 int seconds = totalSeconds % 60;
-//
-//                 // Display the time in the center of the slider
-//                 return '${hours.toString().padLeft(2, '0')} : ${minutes.toString().padLeft(2, '0')} : ${seconds.toString().padLeft(2, '0')}';
-//               },
-//               mainLabelStyle: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-//             ),
-//           ),
-//           min: 0,
-//           max: 86400, // Total number of seconds in a day
-//           initialValue: _sliderValue,
-//           onChange: _onSliderChanged,
-//         ),
-//       ],
-//     );
-//   }
-// }
-//
-// class SleekCircularSliderExample extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     TimeOfDay selectedTime = TimeOfDay(hour: 10, minute: 0);
-//
-//     void handleTimeChanged(TimeOfDay newTime) {
-//       selectedTime = newTime;
-//       // Handle the updated time as needed
-//     }
-//
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Sleek Circular Slider Example'),
-//       ),
-//       body: Center(
-//         child: CircularSliderWidget(
-//           selectedTime: selectedTime,
-//           onTimeChanged: handleTimeChanged,
-//         ),
-//       ),
-//     );
-//   }
-// }
-//
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class CircularSliderWidget extends StatelessWidget {
@@ -167,6 +13,7 @@ class CircularSliderWidget extends StatelessWidget {
     required this.selectedTime,
     required this.onTimeChanged,
   });
+
 
   @override
   Widget build(BuildContext context) {
@@ -221,6 +68,8 @@ class CircularSliderWidget extends StatelessWidget {
     );
   }
 }
+
+
 
 class SleekCircularSliderExample extends StatefulWidget {
   @override

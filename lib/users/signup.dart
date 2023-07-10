@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import '../components/SquareTile.dart';
 
@@ -14,6 +16,8 @@ class _SignupState extends State<Signup> {
   late String? _email;
   late String? _password;
   bool rememberMe = false;
+  final String _baseUrl = "10.0.2.2:8080";
+
 
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -197,17 +201,36 @@ class _SignupState extends State<Signup> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    String message = "\n" + "Email : " + _email! + "\n" + "Mot de passe : " + _password!;
+                    Map<String, dynamic> userData = {
+                      "password" : _password,
+                      "email" : _email,
+                    };
+                    Map<String, String> headers = {
+                      "Content-Type": "application/json; charset=UTF-8"
+                    };
+                    http.post(Uri.http(_baseUrl, "/Backend/users/adduser"), headers: headers, body: json.encode(userData))
+                        .then((http.Response response) {
 
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text("Informations"),
-                          content: Text(message),
-                        );
-                      },
-                    );
+                      if(response.statusCode == 200) {
+
+                        Navigator.pushReplacementNamed(context, "/");
+
+
+
+                      }
+                      else {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return const AlertDialog(
+                                title: Text("Information"),
+                                content: Text("Une erreur s'est produite. Veuillez réessayer !"),
+                              );
+                            });
+                      }
+                    });
+
+
                   }
                 },
               ),

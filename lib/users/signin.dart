@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:parkmobile/parking/Home.dart';
 import 'package:parkmobile/users/codeverfication.dart';
+import 'package:parkmobile/users/phonecerfication.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
+
+
+import '../SplashScreen.dart';
 import '../components/SquareTile.dart';
 import 'mailVerfication.dart';
 
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Signin extends StatefulWidget {
   const Signin({Key? key}) : super(key: key);
@@ -12,7 +23,9 @@ class Signin extends StatefulWidget {
   State<Signin> createState() => _SigninState();
 }
 
+
 class _SigninState extends State<Signin> {
+
 
   late String? _email;
   late String? _password;
@@ -20,6 +33,10 @@ class _SigninState extends State<Signin> {
   bool isGestureDetectorTapped = false;
 
 
+
+
+
+  final String _baseUrl = "10.0.2.2:8080";
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -156,8 +173,7 @@ class _SigninState extends State<Signin> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Colors.transparent),
+                      border: Border.all(color: Colors.transparent),
                     ),
                     child: Checkbox(
                       checkColor: Colors.white,
@@ -165,11 +181,13 @@ class _SigninState extends State<Signin> {
                       value: rememberMe,
                       onChanged: (bool? newValue) {
                         setState(() {
-                          rememberMe = newValue!;
+                          rememberMe = newValue ?? false;
                         });
+                        SplashScreen();
                       },
                     ),
                   ),
+
                   const SizedBox(
                     width: 26,
                   ),
@@ -201,7 +219,61 @@ class _SigninState extends State<Signin> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
-                          Navigator.pushNamed(context, "/homeBottom");
+                       //   Navigator.pushNamed(context, "/homeBottom");
+                        Map<String, dynamic> userData = {
+
+                          "email" : _email,
+                          "password" : _password
+                        };
+                        Map<String, String> headers = {
+                          'Content-Type': 'application/json',
+                        };
+                        http.post(Uri.http(_baseUrl, "/Backend/users/signin"), body: json.encode(userData), headers: headers)
+                            .then((http.Response response) async {
+                          if(response.statusCode == 200) {
+                            Navigator.pushReplacementNamed(context, "/homeBottom");
+                            Map<String, dynamic> userData = json.decode(response.body);
+
+                            // Shared preferences
+                            SharedPreferences prefs = await SharedPreferences.getInstance();
+                            prefs.setString("userEmail", userData["email"]);
+                           String? emailout=  prefs.getString("userEmail");
+
+
+                            http.get(Uri.http(_baseUrl, "/Backend/users/$emailout"), headers: headers)
+                                .then((http.Response response) async {
+                              if (response.statusCode == 200) {
+                                List<String> userIds = List<String>.from(json.decode(response.body));
+
+                                if (userIds.isNotEmpty) {
+                                  String userId = userIds[0];
+
+                                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                                  prefs.setString("userId", userId);
+
+                                  print("User ID: $userId");
+                                } else {
+                                  // Handle case when the userIds list is empty
+                                }
+                              } else {
+                                // Handle non-200 status code
+                              }
+                            }).catchError((error) {
+                              // Handle any errors or exceptions
+                            });
+                          }
+                          else {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return const AlertDialog(
+                                    title: Text("Information"),
+                                    content: Text("Une erreur s'est produite. Veuillez réessayer !"),
+                                  );
+                                });
+                          }
+                        });
+
 
 
                       }
@@ -214,7 +286,7 @@ class _SigninState extends State<Signin> {
               child: TextButton(
                 onPressed:(){
                   showModalBottomSheet(
-                      context: context, 
+                      context: context,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                       builder: (context)=>Container(
                        padding: EdgeInsets.all(16.0),
@@ -252,7 +324,7 @@ class _SigninState extends State<Signin> {
                                // Navigate to another screen or route
                                Navigator.push(
                                  context,
-                                 MaterialPageRoute(builder: (context) => CodeVerfication()),
+                                 MaterialPageRoute(builder: (context) => PhoneVerfiavtion()),
                                );
                              },
                              child: Container(
@@ -265,7 +337,7 @@ class _SigninState extends State<Signin> {
                                  ),
                                ),
                                padding: EdgeInsets.all(20.0),
-                               child: Row(
+                               child: const Row(
                                  children: [
                                    Icon(Icons.sms_outlined, size: 30),
                                    SizedBox(width: 10),
@@ -303,14 +375,17 @@ class _SigninState extends State<Signin> {
                              ),
 
                              child: GestureDetector(
-                               onTap: () {
+                               onTap: () async {
                                  setState(() {
                                    isGestureDetectorTapped = !isGestureDetectorTapped;
                                  });
-                                 Navigator.push(
-                                   context,
-                                   MaterialPageRoute(builder: (context) => MailVerfication()),
-                                 );
+                                     Navigator.push(
+                                       context,
+                                       MaterialPageRoute(builder: (context) => MailVerfication()),
+                                     );
+                            
+
+
                                },
                                child: Container(
                                  padding: EdgeInsets.all(20.0),
@@ -327,6 +402,7 @@ class _SigninState extends State<Signin> {
                                              fontSize: 25,
                                              color: Color(0xFF999CF0),
                                            ),
+
                                          ),
                                          Text(
                                            "Reset via Mail verification",
@@ -447,3 +523,4 @@ class _SigninState extends State<Signin> {
     );
   }
 }
+

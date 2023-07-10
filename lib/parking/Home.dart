@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import 'AnimatedProgressBar.dart';
 import 'SleekCircularSlider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
+
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -13,86 +21,35 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  TimeOfDay startTime = TimeOfDay.now();
-  TimeOfDay endTime = TimeOfDay.now();
-  TimeOfDay? selectedTime;
-  double progress = 0.0;
+
+  final String _baseUrl = "10.0.2.2:8080";
 
 
   @override
   void initState() {
     super.initState();
-    _updateProgress();
-  }
-
-
-  void _selectStartTime(BuildContext context) async {
-    final TimeOfDay? selectedTime = await showTimePicker(
-      context: context,
-      initialTime: startTime,
-    );
-
-    if (selectedTime != null) {
-      setState(() {
-        startTime = selectedTime;
-        _updateProgress();
-      });
-    }
-  }
-
-  void _selectEndTime(BuildContext context) async {
-    final TimeOfDay? selectedTime = await showTimePicker(
-      context: context,
-      initialTime: endTime,
-    );
-
-    if (selectedTime != null) {
-      setState(() {
-        endTime = selectedTime;
-        _updateProgress();
-      });
-    }
-  }
-
-  double calculateProgress() {
-    final startMinutes = startTime.hour * 60 + startTime.minute;
-    final endMinutes = endTime.hour * 60 + endTime.minute;
-    final totalMinutes = 24 * 60; // 24 hours * 60 minutes
-    return (endMinutes - startMinutes) / totalMinutes;
-  }
-
-
-  void _updateProgress() {
-    final startMinutes = startTime.hour * 60 + startTime.minute;
-    final endMinutes = endTime.hour * 60 + endTime.minute;
-    final totalMinutes = 24 * 60; // 24 hours * 60 minutes
-    final newProgress = (endMinutes - startMinutes) / totalMinutes;
-    setState(() {
-      progress = newProgress;
-    });
   }
 
 
 
-  Duration calculateDuration() {
-    final now = DateTime.now();
-    final startDate = DateTime(startTime.hour);
-    var endDate = DateTime( endTime.hour);
 
 
-
-    if (endDate.isBefore(startDate)) {
-      // Set endDate to the next day
-      endDate = endDate.add(Duration(days: 1));
-    }
-
-    return endDate.difference(startDate);
-
-  }
   TextEditingController _textEditingController = TextEditingController();
   TextEditingController _textEditingControllervoiture = TextEditingController();
   FocusNode _focusNode = FocusNode();
   FocusNode _focusNodevoitre = FocusNode();
+  Future<void> _saveLocation() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String location = _textEditingController.text;
+    await prefs.setString('location', location);
+  }
+  Future<void> _savevoiture() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String voiture = _textEditingControllervoiture.text;
+    await prefs.setString('voiture', voiture);
+
+  }
+
   void _showLocationModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -176,6 +133,16 @@ class _HomeState extends State<Home> {
     );
   }
 
+
+  final DateTime _dateMin = DateTime(2003, 01, 01);
+  final DateTime _dateMax = DateTime(2010, 01, 01);
+  final SfRangeValues _dateValues =
+  SfRangeValues(DateTime(2005, 01, 01), DateTime(2008, 01, 01));
+
+  SfRangeValues _values = SfRangeValues(DateTime(2010, 01, 01, 12, 00, 00), DateTime(2010, 01, 01, 18, 00, 00));
+
+  DateTime _value = DateTime(2010, 01, 01, 15, 00, 00);
+
   void _showModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -233,7 +200,8 @@ class _HomeState extends State<Home> {
                   title: Text('Ajouter Matricule voiture '),
                   onTap: () {
                     Navigator.pop(context);
-                    _focusNodevoitre.requestFocus(); // Set focus to the text field
+                    _focusNodevoitre.requestFocus();
+                    // Set focus to the text field
                   },
                 ),
                 SizedBox(height: 29),
@@ -259,9 +227,8 @@ class _HomeState extends State<Home> {
   @override
 
   Widget build(BuildContext context) {
-    Duration duration = calculateDuration();
-    double progress = this.progress;
-    print('Duration: $progress');
+
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -341,95 +308,43 @@ class _HomeState extends State<Home> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 1.0),
-              child: Container(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        height: 300,
-                        child: Column(
-                          children: [
-                            const Text('Start Time:', style: TextStyle(
-                          fontSize: 16,
-                          color: Color(0xFF212121),
-                          fontWeight: FontWeight.bold,
-                        ),),
-                            GestureDetector(
-                              onTap: () => _selectStartTime(context),
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Image.asset(
-                                    'lib/images/timeicone.png',
-                                    width: 200,
-                                    height: 100,
-                                    fit: BoxFit.contain,
-                                  ),
-                                  Text(
-                                    startTime.format(context),
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      SizedBox(
-                        height: 300,
-                        child: Column(
-                          children: [
-                            const Text('End Time:',  style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xFF212121),
-                              fontWeight: FontWeight.bold,
-                            ),),
-                            GestureDetector(
-                              onTap: () => _selectEndTime(context),
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Image.asset(
-                                    'lib/images/timeicone.png',
-                                    width: 200,
-                                    height: 100,
-                                    fit: BoxFit.contain,
-                                  ),
-                                  Text(
-                                    endTime.format(context),
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                          ],
-
-                        ),
-
-                      ),
-
-                    ],
-
+              padding: const EdgeInsets.only(top: 10),
+              child: Center(
+                child: SizedBox(
+                  height: 200, // Set the desired height
+                  child: SfSlider(
+                    min: DateTime(2010, 01, 01, 9, 00, 00),
+                    max: DateTime(2010, 01, 01, 21, 05, 00),
+                    value: _value,
+                    interval: 3,
+                    showTicks: true,
+                    showLabels: true,
+                    enableTooltip: true,
+                    activeColor: Color(0xFF4448AE), // Set the desired color
+                    dateFormat: DateFormat('h:mm'),
+                    dateIntervalType: DateIntervalType.hours,
+                    tooltipTextFormatterCallback: (dynamic actualValue, String formattedText) {
+                      return DateFormat('h:mm a').format(actualValue);
+                    },
+                    onChanged: (dynamic newValue) {
+                      setState(() {
+                        _value = newValue;
+                      });
+                    },
                   ),
                 ),
-
               ),
-
             ),
+
+
+
+
+
+            const SizedBox(
+                height: 50,
+              ),
             Container(
-              padding: EdgeInsets.fromLTRB(15, 0, 30, 10),
+              padding: EdgeInsets.fromLTRB(15, 30, 30, 10),
               child: SizedBox(
                 width: 200,
                 height: 50,
@@ -438,7 +353,38 @@ class _HomeState extends State<Home> {
                     primary: Color(0xFF999CF0),
                   ),
                   child: const Text("PRIX"),
-                  onPressed: () {
+                  onPressed: () async {
+                    Map<String, dynamic> userData = {
+                      "zoneTitle": _textEditingController.text,
+                      "numeroParking": _textEditingController.text,
+                      "matricule": _textEditingControllervoiture.text,
+                    };
+
+                    Map<String, String> headerss = {
+                      "Content-Type": "application/json; charset=UTF-8",
+                    };
+
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    String? userId = prefs.getString("userId");
+
+                    if (userId != null) {
+                      http
+                          .post(Uri.http(_baseUrl, "/Backend/users/$userId/parkings"),
+                        headers: headerss,
+                        body: json.encode(userData),
+                      )
+                          .then((http.Response response) {
+                        if (response.statusCode == 200) {
+                          print("User test");
+
+                        } else {
+                          // Handle non-200 status code
+                        }
+                      }).catchError((error) {
+                        // Handle any errors or exceptions
+                      });
+                    }
+
                     // Handle button press
                   },
                 ),
@@ -490,35 +436,19 @@ class _HomeState extends State<Home> {
         ),
       ),
 
-      floatingActionButton: Container(
-        alignment: Alignment.bottomRight,
-        padding: const EdgeInsets.only(right: 30.0, bottom: 170.0),
-        child: SizedBox(
-          width: 20,
-          child: VerticalProgressBar(
-            height: 200.0,
-            value: progress, // Updated progress value
-            duration: duration,
-          ),
-        ),
-      ),
 
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
+class Data {
+  /// Initialize the instance of the [Data] class.
+  Data({required this.x, required this.y});
 
+  /// Spline series x points.
+  final DateTime x;
 
+  /// Spline series y points.
+  final double y;
+}

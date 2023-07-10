@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:parkmobile/users/profile.dart';
 
 
 
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key}) : super(key: key);
 
@@ -13,10 +16,15 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   late String? _username;
+  late String? _NickName;
   late String? _email;
   late String? _password;
   late String? _birth;
-  late String? _address;
+  late String? _phone;
+  late String? _gendre;
+
+
+  final String _baseUrl = "10.0.2.2:8080";
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -66,7 +74,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
           Container(
             padding: EdgeInsets.all(10.0),
             child: TextFormField(
-              obscureText: true,
               decoration: const InputDecoration(
                 filled: true,
                 fillColor: Color(0xFFF8F7FD),
@@ -83,13 +90,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 labelText: "Full Name",
               ),
-
+              onSaved: (String? value) {
+                _username= value;
+              },
             ),
           ),
           Container(
             padding: EdgeInsets.all(10.0),
             child: TextFormField(
-              obscureText: true,
               decoration: const InputDecoration(
                 filled: true,
                 fillColor: Color(0xFFF8F7FD),
@@ -106,13 +114,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 labelText: "Email",
               ),
-
+              onSaved: (String? value) {
+                _email= value;
+              },
             ),
           ),
           Container(
             padding: EdgeInsets.all(10.0),
             child: TextFormField(
-              obscureText: true,
               decoration: const InputDecoration(
                 filled: true,
                 fillColor: Color(0xFFF8F7FD),
@@ -129,13 +138,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 labelText: "NickName",
               ),
-
+              onSaved: (String? value) {
+                _NickName= value;
+              },
             ),
           ),
           Container(
             padding: EdgeInsets.all(10.0),
             child: TextFormField(
-              obscureText: true,
               decoration: const InputDecoration(
                 filled: true,
                 fillColor: Color(0xFFF8F7FD),
@@ -152,13 +162,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 labelText: "Date of Birth",
               ),
-
+              onSaved: (String? value) {
+                _birth= value;
+              },
             ),
           ),
           Container(
             padding: EdgeInsets.all(10.0),
             child: TextFormField(
-              obscureText: true,
               decoration: const InputDecoration(
                 filled: true,
                 fillColor: Color(0xFFF8F7FD),
@@ -175,13 +186,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 labelText: "Phone Number",
               ),
-
+              onSaved: (String? value) {
+                _phone = value;
+              },
             ),
           ),
           Container(
             padding: EdgeInsets.all(10.0),
             child: TextFormField(
-              obscureText: true,
+
               decoration: const InputDecoration(
                 filled: true,
                 fillColor: Color(0xFFF8F7FD),
@@ -198,7 +211,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 labelText: "Gendre",
               ),
-
+              onSaved: (String? value) {
+                _gendre= value;
+              },
             ),
           ),
           Container(
@@ -215,10 +230,38 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     // Set the text color
                   ),
                   child: const Text("Edit"),
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
+                      Map<String, dynamic> userData= {
 
+                        "firstName":_username,
+                        "lastName":_NickName,
+                        "phoneNumber":_phone,
+                        "gender": _gendre,
+                        "dateOfBirth":_birth,
+                        "email":_email
+                      };
+                      Map<String, String> headerss = {
+                        "Content-Type": "application/json; charset=UTF-8"
+                      };
+
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+                      String? idUser= prefs.getString("userId");
+                      http.put(Uri.http(_baseUrl, "/Backend/users/$idUser/profile"), headers: headerss,body: json.encode(userData))
+                          .then((http.Response response) async {
+                        if (response.statusCode == 200) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ProfileInterface()),
+                          );
+                        } else {
+                          // Handle non-200 status code
+                        }
+                      }).catchError((error) {
+                        // Handle any errors or exceptions
+                      });
                     }
                   },
                 ),

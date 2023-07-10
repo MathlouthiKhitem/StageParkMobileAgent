@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:parkmobile/parking/Home.dart';
 
 import 'package:parkmobile/parking/SleekCircularSlider.dart';
 import 'package:parkmobile/parking/info.dart';
 
+import '../parking/CountdownProgressIndicator.dart';
 import 'nav_bottom.dart';
 class NavigationTab extends StatefulWidget {
   @override
@@ -13,7 +15,7 @@ class NavigationTab extends StatefulWidget {
 class _NavigationTabState extends State<NavigationTab>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
+  FlutterLocalNotificationsPlugin notificationsPlugin = FlutterLocalNotificationsPlugin();
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
@@ -87,7 +89,13 @@ class _NavigationTabState extends State<NavigationTab>
                 children: [
                   const Info(),
                    NavigationBottom(),
-                  SleekCircularSliderExample(),
+                  // SleekCircularSliderExample(),
+                 CountdownProgressIndicator(
+                durationInSeconds: 10,
+                onTimerComplete: () {
+        // Handle timer completion
+      }, flutterLocalNotificationsPlugin: notificationsPlugin,
+      )
                 ],
               ),
             ),
