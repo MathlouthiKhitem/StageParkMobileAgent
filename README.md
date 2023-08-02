@@ -21,23 +21,57 @@ steps:
 ## Screenshots
 
 <!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/1_Light_splash%20screen.png?raw=true)-->
-<!--![App Screenshot](https://raw.githubusercontent.com/khitem2000/IOSMATCHINI/main/screenshots/Screenshot%202023-05-19%20at%2011.43.19%20AM.png?token=GHSAT0AAAAAAB5V2BWM3FRN4LEIZNJDCG4AZDHK6XQ)-->
-<!--![App Screenshot](https://raw.githubusercontent.com/khitem2000/IOSMATCHINI/main/screenshots/Screenshot%202023-05-19%20at%2011.43.25%20AM.png?token=GHSAT0AAAAAAB5V2BWM7MSKVHWXFTSHPEIAZDHK6ZA)-->
-<!--![App Screenshot](https://raw.githubusercontent.com/khitem2000/IOSMATCHINI/main/screenshots/Screenshot%202023-05-19%20at%2011.43.44%20AM.png?token=GHSAT0AAAAAAB5V2BWMZTZW6HS5BV3LCUO2ZDHK62Q)-->
-<!--![App Screenshot](https://raw.githubusercontent.com/khitem2000/IOSMATCHINI/main/screenshots/Screenshot%202023-05-19%20at%2011.44.02%20AM.png?token=GHSAT0AAAAAAB5V2BWMALVGO4KHV42UTWHCZDHK64A)-->
-<!--![App Screenshot](https://raw.githubusercontent.com/khitem2000/IOSMATCHINI/main/screenshots/Screenshot%202023-05-19%20at%2011.44.40%20AM.png?token=GHSAT0AAAAAAB5V2BWMWDROQ3DVEWWZFIDEZDHK65Q)-->
-<!--![App Screenshot](https://raw.githubusercontent.com/khitem2000/IOSMATCHINI/main/screenshots/Screenshot%202023-05-19%20at%2011.52.03%20AM.png?token=GHSAT0AAAAAAB5V2BWNPUL7WGFVLRDGL6SOZDHK66Q)-->
-<!--![App Screenshot](https://raw.githubusercontent.com/khitem2000/IOSMATCHINI/main/screenshots/Screenshot%202023-05-19%20at%2011.52.30%20AM.png?token=GHSAT0AAAAAAB5V2BWN3PKMEMQ2KQWHVZV6ZDHK7AA)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/2_Light_welcome.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/3_Light_sign%20up%20blank%20form.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/4_Light_sign%20in%20blank%20form.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/6_Light_create%20new%20password.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/7_Light_reset%20password%20successful.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/8_Light_fill%20profile%20blank%20form.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/9_Light_settings%20edit%20profile.png)-->
+<!--![App Screenshot](https://raw.githubusercontent.com/MathlouthiKhitem/StageParkMobileAgent/main/screenshots/10_Light_profile%20settings.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/11_Light_settings%20logout%20modal.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/12_Light_home%20map%20direction.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/13_Search.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/14_Light_home%20search%20results.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/15_Light_parking%20book%20details.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/16_Light_parking%20payment%20method.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/17_Light_parking%20payment.png)-->
+<!--![App Screenshot]https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/18_Light_home%20map%20direction.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/19_Light_parking%20timer.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/20_Light_extend%20parking%20time.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/21_Light_home%20notification.png)-->
+<!--![App Screenshot](hhttps://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/22_Light_parking%20select%20vehicle.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/23_Light_my%20bookmark.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/24_Light_parking%20payment%20successful.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/25_Light_parking%20book%20details.png)-->
+
 <div style="display: flex; flex-wrap: wrap;">
 
 <img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/1_Light_splash%20screen.png?raw=true" width="200" height="400">
-<img src="https://raw.githubusercontent.com/khitem2000/IOSMATCHINI/main/screenshots/Screenshot%202023-05-19%20at%2011.52.03%20AM.png" width="200" height="400">
-<img src="https://github.com/khitem2000/IOSMATCHINI/blob/main/screenshots/Screenshot%202023-05-19%20at%2011.43.25%20AM.png" width="200" height="400">
-<img src="https://github.com/khitem2000/IOSMATCHINI/blob/main/screenshots/Screenshot%202023-05-19%20at%2011.43.44%20AM.png" width="200" height="400">
-<img src="https://github.com/khitem2000/IOSMATCHINI/blob/main/screenshots/Screenshot%202023-05-19%20at%2011.44.02%20AM.png" width="200" height="400">
-<img src="https://github.com/khitem2000/IOSMATCHINI/blob/main/screenshots/Screenshot%202023-05-19%20at%2011.44.40%20AM.png" width="200" height="400">
-<img src="https://github.com/khitem2000/IOSMATCHINI/blob/main/screenshots/Screenshot%202023-05-19%20at%2011.52.03%20AM.png" width="200" height="400">
-<img src="https://github.com/khitem2000/IOSMATCHINI/blob/main/screenshots/Screenshot%202023-05-19%20at%2011.52.30%20AM.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/2_Light_welcome.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/3_Light_sign%20up%20blank%20form.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/4_Light_sign%20in%20blank%20form.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/6_Light_create%20new%20password.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/7_Light_reset%20password%20successful.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/8_Light_fill%20profile%20blank%20form.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/9_Light_settings%20edit%20profile.png" width="200" height="400">
+<img src="https://raw.githubusercontent.com/MathlouthiKhitem/StageParkMobileAgent/main/screenshots/10_Light_profile%20settings.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/11_Light_settings%20logout%20modal.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/12_Light_home%20map%20direction.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/13_Search.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/14_Light_home%20search%20results.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/15_Light_parking%20book%20details.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/16_Light_parking%20payment%20method.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/17_Light_parking%20payment.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/18_Light_home%20map%20direction.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/19_Light_parking%20timer.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/20_Light_extend%20parking%20time.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/21_Light_home%20notification.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/22_Light_parking%20select%20vehicle.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/23_Light_my%20bookmark.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/24_Light_parking%20payment%20successful.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/25_Light_parking%20book%20details.png" width="200" height="400">
+
 </div>
 
 ## Getting Started
