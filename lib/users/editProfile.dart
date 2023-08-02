@@ -39,7 +39,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         child: ListView(
 
         children: [
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Center(
@@ -59,7 +59,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     onPressed: () {
                       // Handle edit image button press
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       IconlyBold.editSquare,
                       color: Colors.deepPurple,
                     ),
@@ -68,11 +68,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ],
             ),
           ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
           Container(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: TextFormField(
               decoration: const InputDecoration(
                 filled: true,
@@ -96,7 +96,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: TextFormField(
               decoration: const InputDecoration(
                 filled: true,
@@ -120,7 +120,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: TextFormField(
               decoration: const InputDecoration(
                 filled: true,
@@ -144,7 +144,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: TextFormField(
               decoration: const InputDecoration(
                 filled: true,
@@ -168,7 +168,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: TextFormField(
               decoration: const InputDecoration(
                 filled: true,
@@ -192,7 +192,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: TextFormField(
 
               decoration: const InputDecoration(
@@ -217,7 +217,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             ),
           ),
           Container(
-              padding: EdgeInsets.fromLTRB(30, 10, 30, 30),
+              padding: const EdgeInsets.fromLTRB(30, 10, 30, 30),
 
               // width: 348,
               // height: 50,
@@ -226,7 +226,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 height: 50,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF999CF0), // Set the background color
+                    backgroundColor: const Color(0xFF999CF0), // Set the background color
                     // Set the text color
                   ),
                   child: const Text("Edit"),
@@ -254,7 +254,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         if (response.statusCode == 200) {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ProfileInterface()),
+                            MaterialPageRoute(builder: (context) => const ProfileInterface()),
                           );
                         } else {
                           // Handle non-200 status code

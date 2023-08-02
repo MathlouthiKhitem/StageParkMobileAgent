@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
   class ProfileInterface extends StatefulWidget {
   const ProfileInterface({super.key});
 
@@ -36,7 +34,7 @@ import 'dart:convert';
       if (response.statusCode == 200) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ProfileInterface()),
+          MaterialPageRoute(builder: (context) => const ProfileInterface()),
         );
       } else {
         // Handle non-200 status code
@@ -57,7 +55,7 @@ import 'dart:convert';
               radius: 90,
               backgroundImage: AssetImage('lib/images/Ellipse.png'),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             const Text(
               'John Doe',
               style: TextStyle(
@@ -65,63 +63,63 @@ import 'dart:convert';
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Card(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(50.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Row(
                       children: [
                         IconButton(
-                          icon: Icon(Icons.edit),
+                          icon: const Icon(Icons.edit),
                           onPressed: () {
                             Navigator.pushNamed(context, "/home/update");
                             // Handle button press
                           },
                         ),
-                        Text('Edit Profile'),
+                        const Text('Edit Profile'),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
                         IconButton(
-                          icon: Icon(Icons.settings),
+                          icon: const Icon(Icons.settings),
                           onPressed: () {
                             // Handle button press
                           },
                         ),
-                        Text('Settings'),
+                        const Text('Settings'),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
                         IconButton(
-                          icon: Icon(Icons.favorite),
+                          icon: const Icon(Icons.favorite),
                           onPressed: () {
                             // Handle button press
                           },
                         ),
-                        Text('Favorites'),
+                        const Text('Favorites'),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
                         IconButton(
-                          icon: Icon(Icons.photo),
+                          icon: const Icon(Icons.photo),
                           onPressed: () {
                             // Handle button press
                           },
                         ),
-                        Text('Photos'),
+                        const Text('Photos'),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
 
 
                     Row(
@@ -142,28 +140,28 @@ import 'dart:convert';
                       ],
                     ),
 
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
                         IconButton(
-                          icon: Icon(Icons.notifications),
+                          icon: const Icon(Icons.notifications),
                           onPressed: () {
                             // Handle button press
                           },
                         ),
-                        Text('Notifications'),
+                        const Text('Notifications'),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
                         IconButton(
-                          icon: Icon(Icons.logout),
+                          icon: const Icon(Icons.logout),
                           onPressed: () {
                             // Handle button press
                           },
                         ),
-                        Text('Logout'),
+                        const Text('Logout'),
                       ],
                     ),
                   ],

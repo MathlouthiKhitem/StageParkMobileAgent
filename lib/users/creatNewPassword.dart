@@ -44,13 +44,13 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
             ),
 
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: TextFormField(
 
 
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Color(0xFFF8F7FD),
+                  fillColor: const Color(0xFFF8F7FD),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(10.0),
@@ -64,10 +64,10 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
                   ),
                   labelText: "New Password",
 
-                  prefixIcon: Icon(Icons.password, color: Color(0xFF9E9E9E)),
+                  prefixIcon: const Icon(Icons.password, color: Color(0xFF9E9E9E)),
                   suffixIcon: IconButton(
-                    icon: Icon(Icons.visibility),
-                    color: Color(0xFF9E9E9E),
+                    icon: const Icon(Icons.visibility),
+                    color: const Color(0xFF9E9E9E),
                     onPressed: () {},
                   ),
                 ),
@@ -79,12 +79,12 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
             ),
 
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: TextFormField(
                 obscureText: true,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Color(0xFFF8F7FD),
+                  fillColor: const Color(0xFFF8F7FD),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(10.0),
@@ -98,10 +98,10 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
                   ),
                   labelText: "New Password",
 
-                  prefixIcon: Icon(Icons.password, color: Color(0xFF9E9E9E)),
+                  prefixIcon: const Icon(Icons.password, color: Color(0xFF9E9E9E)),
                   suffixIcon: IconButton(
-                    icon: Icon(Icons.visibility),
-                    color: Color(0xFF9E9E9E),
+                    icon: const Icon(Icons.visibility),
+                    color: const Color(0xFF9E9E9E),
                     onPressed: () {},
                   ),
                 ),
@@ -114,7 +114,7 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
 
 
             Container(
-              padding: EdgeInsets.fromLTRB(90, 10, 30, 20),
+              padding: const EdgeInsets.fromLTRB(90, 10, 30, 20),
               child: Row(
                 children: [
                   Container(
@@ -124,7 +124,7 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
                     ),
                     child: Checkbox(
                       checkColor: Colors.white,
-                      fillColor: MaterialStateProperty.all<Color>(Color(0xFF4448AE)),
+                      fillColor: MaterialStateProperty.all<Color>(const Color(0xFF4448AE)),
                       value: rememberMe,
                       onChanged: (bool? newValue) {
                         setState(() {
@@ -148,7 +148,7 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
               ),
             ),
             Container(
-                padding: EdgeInsets.fromLTRB(30, 0, 30, 30),
+                padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
 
                 // width: 348,
                 // height: 50,
@@ -157,7 +157,7 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF999CF0), // Set the background color
+                      backgroundColor: const Color(0xFF999CF0), // Set the background color
                       // Set the text color
                     ),
                     child: const Text("Next"),
@@ -205,7 +205,7 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
                           if (response.statusCode == 200) {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Signin()),
+                              MaterialPageRoute(builder: (context) => const Signin()),
                             );
                           } else {
                             // Handle non-200 status code
@@ -217,7 +217,7 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
                           context: context,
                           builder: (BuildContext context) {
                             return Container(
-                              constraints: BoxConstraints(maxWidth: 400), // Set the maximum width
+                              constraints: const BoxConstraints(maxWidth: 400), // Set the maximum width
                               child: AlertDialog(
                                 content: Column(
                                   mainAxisSize: MainAxisSize.min, // Set mainAxisSize to min
@@ -237,7 +237,7 @@ class _CreatNewPasswordState extends State<CreatNewPassword> {
                                   Center(
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        primary: Color(0xFFCEC9F2),
+                                        backgroundColor: const Color(0xFFCEC9F2),
                                       ),
 
                                       onPressed: () async {

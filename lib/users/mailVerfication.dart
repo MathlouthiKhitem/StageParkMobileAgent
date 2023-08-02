@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../components/SquareTile.dart';
 import 'creatNewPassword.dart';
 
 class MailVerfication extends StatefulWidget {
@@ -38,11 +37,11 @@ class _MailVerificationState extends State<MailVerfication> {
               margin: const EdgeInsets.fromLTRB(20, 0, 20, 10),
               child: Image.asset('lib/images/Forgot password-rafiki 1.png', width: 460, height: 215),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
@@ -72,17 +71,17 @@ class _MailVerificationState extends State<MailVerfication> {
                 },
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(30, 0, 30, 30),
+              padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
               child: SizedBox(
                 width: 348,
                 height: 50,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF999CF0), // Set the background color
+                    backgroundColor: const Color(0xFF999CF0), // Set the background color
                     // Set the text color
                   ),
                   child: const Text("Next"),
@@ -146,7 +145,7 @@ class _MailVerificationState extends State<MailVerfication> {
             if (isResponse200)
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF999CF0), // Set the background color
+                  backgroundColor: const Color(0xFF999CF0), // Set the background color
                   // Set the text color
                 ),
                 onPressed: () {
@@ -155,17 +154,17 @@ class _MailVerificationState extends State<MailVerfication> {
                     print("responseBody: $responseBody");
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CreatNewPassword()),
+                      MaterialPageRoute(builder: (context) => const CreatNewPassword()),
                     );
                   } else {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CreatNewPassword()),
+                      MaterialPageRoute(builder: (context) => const CreatNewPassword()),
                     );
                   }
 
                 },
-                child: Text('Test Code'),
+                child: const Text('Test Code'),
               ),
           ],
         ),

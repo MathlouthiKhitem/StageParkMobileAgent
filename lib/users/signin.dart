@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:parkmobile/parking/Home.dart';
-import 'package:parkmobile/users/codeverfication.dart';
+
 import 'package:parkmobile/users/phonecerfication.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -13,8 +11,6 @@ import '../SplashScreen.dart';
 import '../components/SquareTile.dart';
 import 'mailVerfication.dart';
 
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class Signin extends StatefulWidget {
   const Signin({Key? key}) : super(key: key);
@@ -49,7 +45,7 @@ class _SigninState extends State<Signin> {
           children: [
             Transform(
               transform: Matrix4.identity()..scale(2.0, 1.0),
-              child: Icon(
+              child: const Icon(
                 Icons.arrow_back,
                 textDirection: TextDirection.rtl,
                 size: 48,
@@ -84,7 +80,7 @@ class _SigninState extends State<Signin> {
 
             ),
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
@@ -126,12 +122,12 @@ class _SigninState extends State<Signin> {
 
 
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: TextFormField(
                 obscureText: true,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Color(0xFFF8F7FD),
+                  fillColor: const Color(0xFFF8F7FD),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(10.0),
@@ -145,10 +141,10 @@ class _SigninState extends State<Signin> {
                   ),
                   labelText: "Mot de passe",
 
-                  prefixIcon: Icon(Icons.lock, color: Color(0xFF9E9E9E)),
+                  prefixIcon: const Icon(Icons.lock, color: Color(0xFF9E9E9E)),
                   suffixIcon: IconButton(
-                    icon: Icon(Icons.visibility),
-                    color: Color(0xFF9E9E9E),
+                    icon: const Icon(Icons.visibility),
+                    color: const Color(0xFF9E9E9E),
                     onPressed: () {},
                   ),
                 ),
@@ -168,7 +164,7 @@ class _SigninState extends State<Signin> {
 
 
             Container(
-              padding: EdgeInsets.fromLTRB(90, 10, 30, 20),
+              padding: const EdgeInsets.fromLTRB(90, 10, 30, 20),
               child: Row(
                 children: [
                   Container(
@@ -177,13 +173,13 @@ class _SigninState extends State<Signin> {
                     ),
                     child: Checkbox(
                       checkColor: Colors.white,
-                      fillColor: MaterialStateProperty.all<Color>(Color(0xFF4448AE)),
+                      fillColor: MaterialStateProperty.all<Color>(const Color(0xFF4448AE)),
                       value: rememberMe,
                       onChanged: (bool? newValue) {
                         setState(() {
                           rememberMe = newValue ?? false;
                         });
-                        SplashScreen();
+                        const SplashScreen();
                       },
                     ),
                   ),
@@ -203,7 +199,7 @@ class _SigninState extends State<Signin> {
               ),
             ),
             Container(
-                padding: EdgeInsets.fromLTRB(30, 0, 30, 30),
+                padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
 
                 // width: 348,
                 // height: 50,
@@ -212,7 +208,7 @@ class _SigninState extends State<Signin> {
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF999CF0), // Set the background color
+                      backgroundColor: const Color(0xFF999CF0), // Set the background color
                       // Set the text color
                     ),
                     child: const Text("Sign in"),
@@ -231,7 +227,7 @@ class _SigninState extends State<Signin> {
                         http.post(Uri.http(_baseUrl, "/Backend/users/signin"), body: json.encode(userData), headers: headers)
                             .then((http.Response response) async {
                           if(response.statusCode == 200) {
-                            Navigator.pushReplacementNamed(context, "/homeBottom");
+                            Navigator.pushReplacementNamed(context, "/ParkingSelectionScreen");
                             Map<String, dynamic> userData = json.decode(response.body);
 
                             // Shared preferences
@@ -289,7 +285,7 @@ class _SigninState extends State<Signin> {
                       context: context,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                       builder: (context)=>Container(
-                       padding: EdgeInsets.all(16.0),
+                       padding: const EdgeInsets.all(16.0),
                        child: Column(
                          crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -303,7 +299,7 @@ class _SigninState extends State<Signin> {
                                ),
                              ),
                            ),
-                           SizedBox(
+                           const SizedBox(
                              width: 2,
                            ),
                            const Text( "Make Selection!",
@@ -311,7 +307,7 @@ class _SigninState extends State<Signin> {
                                fontSize: 30,
                                color: Color(0xFF4448AE),
                              )),
-                           Text("Select which contact details should we use to reset your password",style: Theme.of(context).textTheme.bodyText2),
+                           Text("Select which contact details should we use to reset your password",style: Theme.of(context).textTheme.bodyMedium),
                               const SizedBox(
                                 height: 30,
                               ),
@@ -324,19 +320,19 @@ class _SigninState extends State<Signin> {
                                // Navigate to another screen or route
                                Navigator.push(
                                  context,
-                                 MaterialPageRoute(builder: (context) => PhoneVerfiavtion()),
+                                 MaterialPageRoute(builder: (context) => const PhoneVerfiavtion()),
                                );
                              },
                              child: Container(
                                decoration: BoxDecoration(
                                  borderRadius: BorderRadius.circular(10.0),
-                                 color: isGestureDetectorTapped ? Colors.pink : Color(0xFFF1F2FF),
+                                 color: isGestureDetectorTapped ? Colors.pink : const Color(0xFFF1F2FF),
                                  border: Border.all(
                                    color: isGestureDetectorTapped ? Colors.pink : Colors.transparent,
                                    width: 2.0,
                                  ),
                                ),
-                               padding: EdgeInsets.all(20.0),
+                               padding: const EdgeInsets.all(20.0),
                                child: const Row(
                                  children: [
                                    Icon(Icons.sms_outlined, size: 30),
@@ -367,7 +363,7 @@ class _SigninState extends State<Signin> {
                            Container(
                              decoration: BoxDecoration(
                                borderRadius: BorderRadius.circular(10.0),
-                               color: isGestureDetectorTapped ? Colors.pink : Color(0xFFF1F2FF),
+                               color: isGestureDetectorTapped ? Colors.pink : const Color(0xFFF1F2FF),
                                border: Border.all(
                                  color: isGestureDetectorTapped ? Colors.pink : Colors.transparent,
                                  width: 2.0,
@@ -381,14 +377,14 @@ class _SigninState extends State<Signin> {
                                  });
                                      Navigator.push(
                                        context,
-                                       MaterialPageRoute(builder: (context) => MailVerfication()),
+                                       MaterialPageRoute(builder: (context) => const MailVerfication()),
                                      );
-                            
+
 
 
                                },
                                child: Container(
-                                 padding: EdgeInsets.all(20.0),
+                                 padding: const EdgeInsets.all(20.0),
                                  child: const Row(
                                    children: [
                                      Icon(Icons.mail_outline, size: 30),
@@ -419,7 +415,7 @@ class _SigninState extends State<Signin> {
                   )
                   );
                 },
-                child: Text(
+                child: const Text(
                   'Forgot the password?',
                   style: TextStyle(
                     color: Color(0xFF4D5DFA), // Color "#4D5DFA"
@@ -436,7 +432,7 @@ class _SigninState extends State<Signin> {
                     // Add the navigation logic to go to the login page
                     Navigator.pushNamed(context, "/signup"); // Replace "/login" with your login route name
                   },
-                  child: Text(
+                  child: const Text(
                     'Already have an account?',
                     style: TextStyle(
                       color: Color(0xFF4D5DFA), // Color "#4D5DFA"
@@ -449,7 +445,7 @@ class _SigninState extends State<Signin> {
             ),
 
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
                   Row(
@@ -473,11 +469,11 @@ class _SigninState extends State<Signin> {
                       Container(
                         width: 120.0,
                         height: 1.0,
-                        color: Color(0xFF9E9E9E),
+                        color: const Color(0xFF9E9E9E),
                       ),
                     ],
                   ),
-                  SizedBox(height: 23),
+                  const SizedBox(height: 23),
 
                   // google + apple sign in buttons
                   const Row(

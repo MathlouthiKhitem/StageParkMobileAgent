@@ -3,7 +3,7 @@ import 'package:parkmobile/users/signin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'navigations/nav_bottom.dart';
-import 'navigations/nav_tab.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -41,10 +41,10 @@ class _SplashScreenState extends State<SplashScreen> {
       builder: (context, snapshot) {
         if(snapshot.hasData) {
           if(route=="homeBottom") {
-            return NavigationBottom();
+            return const NavigationBottom();
           }
           else {
-            return Signin();
+            return const Signin();
           }
         }
         else {

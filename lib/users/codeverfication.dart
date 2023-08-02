@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
-import '../components/SquareTile.dart';
 import 'creatNewPassword.dart';
 
 class CodeVerfication extends StatefulWidget {
   final String responseBody;
 
-  CodeVerfication({required this.responseBody});
+  const CodeVerfication({super.key, required this.responseBody});
 
   @override
   _CodeVerificationState createState() => _CodeVerificationState();
@@ -45,8 +44,8 @@ class _CodeVerificationState extends State<CodeVerfication> {
                 const SizedBox(height: 30,),
                 OtpTextField(
                   numberOfFields: 6,
-                  borderColor: Color(0xFF512DA8),
-                  fillColor: Color(0xFF999CF0).withOpacity(0.1),
+                  borderColor: const Color(0xFF512DA8),
+                  fillColor: const Color(0xFF999CF0).withOpacity(0.1),
                   filled: true,
                   showFieldAsBox: true,
                   onSubmit: (String code) {
@@ -64,7 +63,7 @@ class _CodeVerificationState extends State<CodeVerfication> {
                         if (value != null) {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => CreatNewPassword()),
+                            MaterialPageRoute(builder: (context) => const CreatNewPassword()),
                           );
                         }
                       });
@@ -74,7 +73,7 @@ class _CodeVerificationState extends State<CodeVerfication> {
                         builder: (context) {
                           return AlertDialog(
                             title: const Text("Incorrect Code"),
-                            content: Text("The entered code is incorrect."),
+                            content: const Text("The entered code is incorrect."),
                             actions: <Widget>[
                               TextButton(
                                 child: const Text("OK"),
@@ -96,7 +95,7 @@ class _CodeVerificationState extends State<CodeVerfication> {
                   width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF999CF0), // Set the background color
+                      backgroundColor: const Color(0xFF999CF0), // Set the background color
                       // Set the text color
                     ),
                     child: const Text("Next"),

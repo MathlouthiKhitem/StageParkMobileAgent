@@ -1,12 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:intl_phone_field/countries.dart';
 import 'package:parkmobile/users/codeverfication.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 class PhoneVerfiavtion extends StatefulWidget {
   const PhoneVerfiavtion({Key? key}) : super(key: key);
 
@@ -43,13 +39,13 @@ class _MailVerficationState extends State<PhoneVerfiavtion> {
                 child: Image.asset('lib/images/Forgot password-rafiki 1.png',
                     width: 460, height: 215)
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: IntlPhoneField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Phone Number',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -62,7 +58,7 @@ class _MailVerficationState extends State<PhoneVerfiavtion> {
                 },
                 onSaved: (PhoneNumber? number) {
                   if (number != null) {
-                    _codephoneText = number.countryCode! + number.number!;
+                    _codephoneText = number.countryCode+ number.number;
                   }
                 },
                 validator: (PhoneNumber? value) {
@@ -80,13 +76,13 @@ class _MailVerficationState extends State<PhoneVerfiavtion> {
 
 
 
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
 
 
             Container(
-                padding: EdgeInsets.fromLTRB(30, 0, 30, 30),
+                padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
 
                 // width: 348,
                 // height: 50,
@@ -95,7 +91,7 @@ class _MailVerficationState extends State<PhoneVerfiavtion> {
                   height: 50,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFF999CF0), // Set the background color
+                      backgroundColor: const Color(0xFF999CF0), // Set the background color
                       // Set the text color
                     ),
                     child: const Text("Next"),

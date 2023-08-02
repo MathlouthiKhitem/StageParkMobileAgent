@@ -32,7 +32,7 @@ class _SignupState extends State<Signup> {
           children: [
             Transform(
               transform: Matrix4.identity()..scale(2.0, 1.0),
-              child: Icon(
+              child: const Icon(
                 Icons.arrow_back,
                 textDirection: TextDirection.rtl,
                 size: 48,
@@ -67,7 +67,7 @@ class _SignupState extends State<Signup> {
 
             ),
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
@@ -109,12 +109,12 @@ class _SignupState extends State<Signup> {
 
 
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: TextFormField(
                 obscureText: true,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Color(0xFFF8F7FD),
+                  fillColor: const Color(0xFFF8F7FD),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(10.0),
@@ -128,10 +128,10 @@ class _SignupState extends State<Signup> {
                   ),
                   labelText: "Mot de passe",
 
-                  prefixIcon: Icon(Icons.lock, color: Color(0xFF9E9E9E)),
+                  prefixIcon: const Icon(Icons.lock, color: Color(0xFF9E9E9E)),
                   suffixIcon: IconButton(
-                    icon: Icon(Icons.visibility),
-                    color: Color(0xFF9E9E9E),
+                    icon: const Icon(Icons.visibility),
+                    color: const Color(0xFF9E9E9E),
                     onPressed: () {},
                   ),
                 ),
@@ -151,7 +151,7 @@ class _SignupState extends State<Signup> {
 
 
             Container(
-              padding: EdgeInsets.fromLTRB(90, 10, 30, 20),
+              padding: const EdgeInsets.fromLTRB(90, 10, 30, 20),
               child: Row(
                 children: [
                   Container(
@@ -161,7 +161,7 @@ class _SignupState extends State<Signup> {
                     ),
                     child: Checkbox(
                       checkColor: Colors.white,
-                      fillColor: MaterialStateProperty.all<Color>(Color(0xFF4448AE)),
+                      fillColor: MaterialStateProperty.all<Color>(const Color(0xFF4448AE)),
                       value: rememberMe,
                       onChanged: (bool? newValue) {
                         setState(() {
@@ -185,7 +185,7 @@ class _SignupState extends State<Signup> {
               ),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(30, 0, 30, 30),
+              padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
 
               // width: 348,
               // height: 50,
@@ -194,7 +194,7 @@ class _SignupState extends State<Signup> {
                 height: 50,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF999CF0), // Set the background color
+                    backgroundColor: const Color(0xFF999CF0), // Set the background color
                     // Set the text color
                   ),
                 child: const Text("Sign up"),
@@ -208,7 +208,7 @@ class _SignupState extends State<Signup> {
                     Map<String, String> headers = {
                       "Content-Type": "application/json; charset=UTF-8"
                     };
-                    http.post(Uri.http(_baseUrl, "/Backend/users/adduser"), headers: headers, body: json.encode(userData))
+                    http.post(Uri.http(_baseUrl, "/backend/Agent/addAgentusers"), headers: headers, body: json.encode(userData))
                         .then((http.Response response) {
 
                       if(response.statusCode == 200) {
@@ -237,7 +237,7 @@ class _SignupState extends State<Signup> {
             )
                 ),
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
                   Row(
@@ -261,11 +261,11 @@ class _SignupState extends State<Signup> {
                       Container(
                         width: 120.0,
                         height: 1.0,
-                        color: Color(0xFF9E9E9E),
+                        color: const Color(0xFF9E9E9E),
                       ),
                     ],
                   ),
-                  SizedBox(height: 23),
+                  const SizedBox(height: 23),
 
                   // google + apple sign in buttons
                   const Row(
