@@ -31,6 +31,8 @@ steps:
 <!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/9_Light_settings%20edit%20profile.png)-->
 <!--![App Screenshot](https://raw.githubusercontent.com/MathlouthiKhitem/StageParkMobileAgent/main/screenshots/10_Light_profile%20settings.png)-->
 <!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/11_Light_settings%20logout%20modal.png)-->
+<!--![App Screenshot]https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/Screenshot%202023-07-22%20at%2011.52.20%20AM.png)-->
+<!--![App Screenshot](https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/31_Light_parking%20Agent%20method.png)-->
 
 <div style="display: flex; flex-wrap: wrap;">
 
@@ -44,7 +46,8 @@ steps:
 <img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/9_Light_settings%20edit%20profile.png" width="200" height="400">
 <img src="https://raw.githubusercontent.com/MathlouthiKhitem/StageParkMobileAgent/main/screenshots/10_Light_profile%20settings.png" width="200" height="400">
 <img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/11_Light_settings%20logout%20modal.png" width="200" height="400">
-
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/Screenshot%202023-07-22%20at%2011.52.20%20AM.png" width="200" height="400">
+<img src="https://github.com/MathlouthiKhitem/StageParkMobileAgent/blob/main/screenshots/31_Light_parking%20Agent%20method.png" width="200" height="400">
 
 </div>
 
